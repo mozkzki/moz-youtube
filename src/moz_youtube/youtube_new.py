@@ -79,7 +79,8 @@ class Youtube:
         if datetime.now() + timedelta(minutes=10) > self._token_expires_at:
             logger.debug("トークンの期限切れが近いため、更新を行います")
             new_token = self._google_session.refresh_token(
-                self._google_session.auto_refresh_url, **self._google_session.auto_refresh_kwargs
+                self._google_session.auto_refresh_url,
+                **self._google_session.auto_refresh_kwargs
             )
             self._google_session.token = new_token
             self.__update_token_expires_at()
@@ -94,7 +95,9 @@ class Youtube:
         # 認証情報を環境変数から書き込み
         self._save_credential_from_env()
         # 認証情報を読み込み
-        auth_info = json.loads(Path(self._credential_path).read_text()).get("installed", None)
+        auth_info = json.loads(Path(self._credential_path).read_text()).get(
+            "installed", None
+        )
         assert auth_info is not None
         # トークン読み込み
         token = self.__load_token()

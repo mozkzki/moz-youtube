@@ -58,7 +58,9 @@ def get_videos_within_x_day(x: float = 7, dotenv_path: str = None) -> List[Video
 
 
 def _filter_within_x_day(items: List[Dict], x: float) -> List[Dict]:
-    return list(filter(lambda item: _is_within_x_day(item["snippet"]["publishedAt"], x), items))
+    return list(
+        filter(lambda item: _is_within_x_day(item["snippet"]["publishedAt"], x), items)
+    )
 
 
 def _is_within_x_day(date_str: str, x: float) -> bool:
@@ -134,7 +136,9 @@ def _get_videos(
 
 
 def _get_playlistitems_list_request(youtube: Resource) -> HttpRequest:
-    channels_response = youtube.channels().list(mine=True, part="contentDetails").execute()
+    channels_response = (
+        youtube.channels().list(mine=True, part="contentDetails").execute()
+    )
 
     for channel in channels_response["items"]:
         uploads_list_id = channel["contentDetails"]["relatedPlaylists"]["uploads"]
@@ -151,7 +155,11 @@ def _choice_playlist_item(playlist_items: List[Dict]) -> Optional[Dict]:
     items_number = len(playlist_items)
     if items_number > 0:
         index = random.randint(0, items_number - 1)
-        print("video choice done. choiced_index={} from {}videos.".format(index, items_number))
+        print(
+            "video choice done. choiced_index={} from {}videos.".format(
+                index, items_number
+            )
+        )
         return playlist_items[index]
     else:
         print("playlist item is empty. choiced no video.")

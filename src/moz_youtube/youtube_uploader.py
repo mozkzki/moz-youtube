@@ -43,7 +43,9 @@ RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 
 def upload(options: UploadOption, dotenv_path: str = None) -> Optional[str]:
     if not os.path.exists(options.file):
-        logger.error("not specified valid file to upload. options.file={}".format(options.file))
+        logger.error(
+            "not specified valid file to upload. options.file={}".format(options.file)
+        )
         return None
 
     youtube = create_youtube(dotenv_path=dotenv_path)
@@ -127,7 +129,9 @@ def _resumable_upload(insert_request) -> Optional[str]:
 
             max_sleep = 2 ** retry
             sleep_seconds = random.random() * max_sleep
-            logger.info("Sleeping {} seconds and then retrying...".format(sleep_seconds))
+            logger.info(
+                "Sleeping {} seconds and then retrying...".format(sleep_seconds)
+            )
             time.sleep(sleep_seconds)
 
     return None
