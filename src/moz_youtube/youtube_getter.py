@@ -62,7 +62,7 @@ def _filter_within_x_day(items: List[Dict], x: float) -> List[Dict]:
 
 
 def _is_within_x_day(date_str: str, x: float) -> bool:
-    date = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.000Z")
+    date = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ")
     now = datetime.now()
     one_week_ago = now - timedelta(days=x)
     if one_week_ago < date:

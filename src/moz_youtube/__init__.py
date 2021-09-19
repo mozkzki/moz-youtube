@@ -7,6 +7,7 @@ from moz_youtube.youtube_getter import (
 from moz_youtube.youtube_uploader import upload
 from moz_youtube.youtube_updater import add_to_play_list, delete_from_play_list
 from moz_youtube.upload_option import UploadOption
+from moz_youtube.video import Video
 
 __all__ = [
     "random_get_video",
@@ -17,4 +18,5 @@ __all__ = [
     "add_to_play_list",
     "delete_from_play_list",
     "UploadOption",
+    "Video",
 ]
